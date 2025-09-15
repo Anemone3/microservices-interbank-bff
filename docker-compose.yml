@@ -1,0 +1,121 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-microservices-data
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: finance
+    volumes:
+      - postgres-microservices-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
+    ports:
+      - "5433:5432"
+    networks:
+      - microservices-network
+
+  mcs-security-service:
+    build:
+      context: ./mcs-security-service
+      dockerfile: Dockerfile
+    container_name: mcs-security-service
+    ports:
+      - "9000:9000"
+    environment:
+      - SERVER_PORT=9000
+      - URL_SECURITY_SERVICE=http://mcs-security-service:9000
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  mcs-customers:
+    build:
+      context: ./mcs-customers
+      dockerfile: Dockerfile
+    container_name: mcs-customers
+    ports:
+      - "8083:8083"
+    environment:
+      - SERVER_CUSTOMER_PORT=8083
+      - DB_HOST=postgres:5432
+      - DB_NAME=finance
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=root
+    depends_on:
+      - postgres
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  mcs-finance-products:
+    build:
+      context: ./mcs-finance-products
+      dockerfile: Dockerfile
+    container_name: mcs-finance-products
+    ports:
+      - "8082:8082"
+    environment:
+      - SERVER_CUSTOMER_PORT=8082
+      - DB_HOST=postgres:5432
+      - DB_NAME=finance
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=root
+    depends_on:
+      - postgres
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  bff-web:
+    build:
+      context: ./bff-web
+      dockerfile: Dockerfile
+    container_name: bff-web
+    ports:
+      - "8030:8030"
+    environment:
+      - BFF_WEB_PORT=8030
+      - BFF_WEB_CLIENT_ID=bff-web
+      - BFF_WEB_CLIENT_SECRET=secretweb
+      - URL_SECURITY_SERVICE_AUTH=http://mcs-security-service:9000
+      - URL_SECURITY_SERVICE_AUTH_JWT=http://mcs-security-service:9000/oauth2/jwks
+      - CUSTOMER_SERVICE_URL=http://mcs-customers:8083
+      - PRODUCT_FINANCE_SERVICE_URL=http://mcs-finance-products:8082
+    depends_on:
+      - mcs-security-service
+      - mcs-customers
+      - mcs-finance-products
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  bff-mobile:
+    build:
+      context: ./bff-mobile
+      dockerfile: Dockerfile
+    container_name: bff-mobile
+    ports:
+      - "8080:8080"
+    environment:
+      - BFF_MOBILE_PORT=8080
+      - BFF_MOBILE_CLIENT_ID=bff-mobile
+      - BFF_MOBILE_CLIENT_SECRET=secretmobile
+      - URL_SECURITY_SERVICE_AUTH=http://mcs-security-service:9000
+      - URL_SECURITY_SERVICE_AUTH_JWT=http://mcs-security-service:9000/oauth2/jwks
+      - CUSTOMER_SERVICE_URL=http://mcs-customers:8083
+      - PRODUCT_FINANCE_SERVICE_URL=http://mcs-finance-products:8082
+    depends_on:
+      - mcs-security-service
+      - mcs-customers
+      - mcs-finance-products
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+volumes:
+  postgres-microservices-data:
+
+networks:
+  microservices-network:
+    driver: bridge

@@ -1,0 +1,993 @@
+{
+	"info": {
+		"_postman_id": "0be9999b-79b6-49a4-bafd-a2e109a2a251",
+		"name": "MCS - Castaneda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36163075"
+	},
+	"item": [
+		{
+			"name": "mcs-customers",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jair\",\n    \"middleName\": \"Franzua\",\n    \"patSurname\":\"Castaneda\",\n    \"matSurname\":\"Huamani\",\n    \"documentType\":\"DNI\",\n    \"documentNumber\": \"76251290\",\n    \"address\": \"Av. Inca Garcilazo de la Vega 1336\",\n    \"email\": \"c.h.jair13@gmail.com\",\n    \"phone\": \"943933073\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByCU",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jair\",\n    \"middleName\": \"Franzua\",\n    \"patSurname\":\"Castaneda\",\n    \"matSurname\":\"Huamani\",\n    \"documentType\":\"DNI\",\n    \"documentNumber\": \"76252690\",\n    \"address\": \"Av. Inca Garcilazo de la Vega 1336\",\n    \"email\": \"c.h.jair13@gmail.com\",\n    \"phone\": \"943933073\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8083/customers/76252690/document",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"customers",
+								"76252690",
+								"document"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mcs-product-finances",
+			"item": [
+				{
+					"name": "product-finances",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productType\": \"CREDIT_CARD\",\n    \"description\": \"Tarjeta de crédito clásica\",\n    \"interestRate\":15.50\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/product-finances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"product-finances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/product-finances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"product-finances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\":\"cambiando xd\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8082/product-finances/9f90c302-ae1d-4678-b40b-87d76977980d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"product-finances",
+										"9f90c302-ae1d-4678-b40b-87d76977980d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\":\"Tarjeta de crédito la de siempre\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/product-finances/9f90c302-ae1d-4678-b40b-87d76977980d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"product-finances",
+										"9f90c302-ae1d-4678-b40b-87d76977980d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer-product-finances",
+					"item": [
+						{
+							"name": "create account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"9f90c302-ae1d-4678-b40b-87d76977980d\",\r\n    \"accountNumber\":\"4423-2322-5322-21232\",\r\n    \"balance\":200.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/finances/customer/01f848c3-222b-474e-ad6c-2457f0faa148",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"finances",
+										"customer",
+										"01f848c3-222b-474e-ad6c-2457f0faa148"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFinancesByCustomer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/finances/customer/01f848c3-222b-474e-ad6c-2457f0faa148/details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"finances",
+										"customer",
+										"01f848c3-222b-474e-ad6c-2457f0faa148",
+										"details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findWithAccoutNumber",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8082/finances/4423-2322-532-2345/account",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"finances",
+										"4423-2322-532-2345",
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deposit account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/finances/4423-2322-532-2345/account/deposit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"finances",
+										"4423-2322-532-2345",
+										"account",
+										"deposit"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "bff-mobile",
+			"item": [
+				{
+					"name": "tests-endpoints",
+					"item": [
+						{
+							"name": "encrypt-codes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(responseBody);\r",
+											"pm.globals.set('encryptCode',body[0]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_mobile}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tests",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get products webflux",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_bff_mobile}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/product-finances/stream",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product-finances",
+								"stream"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product-finances",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_bff_mobile}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/product-finances",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product-finances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUniqueCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_bff_mobile}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/customer-finances/{{encryptCode}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer-finances",
+								"{{encryptCode}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposit account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_bff_mobile}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNumber\":\"4423-2322-2342-2123\",\r\n    \"amount\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer-finances/account/deposit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer-finances",
+								"account",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bff-web",
+			"item": [
+				{
+					"name": "product-finances",
+					"item": [
+						{
+							"name": "get-all",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(responseBody);\r",
+											"pm.globals.set('productId',body[0].productId);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountNumber\":\"4423-2322-532-21232\",\r\n    \"amount\": 100\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8030/api/product-finances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"product-finances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-by-id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8030/api/product-finances/{{productId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"product-finances",
+										"{{productId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"productType\": \"Loan\",\r\n  \"description\": \"Préstamo en soles de libre disponibilidad para cubrir cualquier necesidad.\",\r\n  \"interestRate\": 0.155\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8030/api/product-finances",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"product-finances"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customer",
+					"item": [
+						{
+							"name": "get-customers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const body = JSON.parse(responseBody);\r",
+											"pm.globals.set('documentCustomer',body[0].documentNumber);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8030/api/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-finance-account",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"{{productId}}\",\r\n    \"accountNumber\": \"1234-2424-232-1235\",\r\n    \"balance\": 100.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8030/api/customers/{{documentCustomer}}/finance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"customers",
+										"{{documentCustomer}}",
+										"finance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Juan\",\r\n  \"middleName\": \"Carlos\",\r\n  \"patSurname\": \"Pérez\",\r\n  \"matSurname\": \"González\",\r\n  \"documentType\": \"DNI\",\r\n  \"documentNumber\": \"74859632\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"phone\": \"987654321\",\r\n  \"address\": \"Av. Javier Prado Este 123, San Isidro, Lima\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8030/api/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update-customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Ariku\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8030/api/customers/{{documentCustomer}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"customers",
+										"{{documentCustomer}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "block-customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token_bff_web}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8030/api/customers/{{documentCustomer}}/block",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8030",
+									"path": [
+										"api",
+										"customers",
+										"{{documentCustomer}}",
+										"block"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "security",
+			"item": [
+				{
+					"name": "endpoints",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/.well-known/oauth-authorization-server",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								".well-known",
+								"oauth-authorization-server"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token mobile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const body = JSON.parse(responseBody);",
+									"pm.globals.set('token_bff_mobile',body.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secretmobile",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "bff-mobile",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "app01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9000/oauth2/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token-web",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const body = JSON.parse(responseBody);",
+									"pm.globals.set('token_bff_web',body.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secretweb",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "bff-web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "bff-web",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9000/oauth2/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

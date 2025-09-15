@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: bff-mobile
+  security:
+    oauth2:
+      client:
+        registration:
+          bff-mobile:
+            provider: spring-auth-server
+            client-id: ${BFF_MOBILE_CLIENT_ID:bff-mobile}
+            client-secret: ${BFF_MOBILE_CLIENT_SECRET:secretmobile}
+            authorization-grant-type: client_credentials
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${URL_SECURITY_SERVICE_AUTH_JWT:http://localhost:9000/oauth2/jwks}
+          issuer-uri: ${URL_SECURITY_SERVICE_AUTH:http://localhost:9000}
+          audiences:
+            - bff-mobile
+server:
+  port: ${BFF_MOBILE_PORT:8080}
+microservices:
+  customer-service-url: ${CUSTOMER_SERVICE_URL:http://localhost:8083}
+  product-finance-service-url: ${PRODUCT_FINANCE_SERVICE_URL:http://localhost:8082}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    oauth:
+      client-id: ${BFF_MOBILE_CLIENT_ID:bff-mobile}
+      client-secret: ${BFF_MOBILE_CLIENT_SECRET:secretmobile}
+    path: /swagger-ui.html
+logging:
+  level:
+    com.castaneda: INFO
+    org.springframework.web: WARN
+    reactor.netty: WARN

@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: bff-web
+  security:
+    oauth2:
+      client:
+        registration:
+          bff-web:
+            provider: spring-auth-server
+            client-id: ${BFF_WEB_CLIENT_ID:bff-web}
+            client-secret: ${BFF_WEB_CLIENT_SECRET:secretweb}
+            authorization-grant-type: client_credentials
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${URL_SECURITY_SERVICE_AUTH_JWT:http://localhost:9000/oauth2/jwks}
+          issuer-uri: ${URL_SECURITY_SERVICE_AUTH:http://localhost:9000}
+          audiences:
+            - bff-web
+server:
+  port: ${BFF_WEB_PORT:8030}
+
+microservices:
+  customer-service-url: ${CUSTOMER_SERVICE_URL:http://localhost:8083}
+  product-finance-service-url: ${PRODUCT_FINANCE_SERVICE_URL:http://localhost:8082}
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    oauth:
+      client-id: ${BFF_WEB_CLIENT_ID:bff-web}
+      client-secret: ${BFF_WEB_CLIENT_SECRET:secretweb}
+    path: /swagger-ui.html
+logging:
+  level:
+    com.castaneda: INFO
+    org.springframework.web: WARN
+    reactor.netty: WARN

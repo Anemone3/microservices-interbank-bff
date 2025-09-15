@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: mcs-security-service
+mcs-security:
+  applications:
+    - clientId: bff-web
+      clientSecret: "{noop}secretweb"
+    - clientId: bff-mobile
+      clientSecret: "{noop}secretmobile"
+
+settings:
+  issuer-uri: ${URL_SECURITY_SERVICE:http://localhost:9000}
+
+server:
+  port: ${SERVER_PORT:9000}
